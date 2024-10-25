@@ -6,17 +6,19 @@ function Navbar() {
   // Hooks ---------------------------------------
   // Context -------------------------------------
   // Methods -------------------------------------
+  const getLinkStyle = ( {isActive} ) => ( isActive ? 'navSelected' : null);
+
   // View ----------------------------------------
   return (
     <nav>
       <div className="navItem">
-        <NavLink to='/' >Home</NavLink>
+        <NavLink to='/' className={getLinkStyle} >Home</NavLink>
       </div>
       <div className="navItem">
-        <NavLink to='/signin' >Sign In</NavLink>
+        <NavLink to='/signin' className={getLinkStyle} >Sign In</NavLink>
       </div>
       <div className="navItem">
-        <NavLink to='/contact' >Contact us</NavLink>
+        <NavLink to='/contact' className={getLinkStyle} >Contact us</NavLink>
       </div>
     </nav>
   )
