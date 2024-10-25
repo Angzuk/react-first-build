@@ -1,4 +1,6 @@
 import Header from "./Header";
+import Footer from "./Footer";
+
 
 function Layout(props) {
     // Properties ---------------------------------------------------
@@ -12,6 +14,7 @@ function Layout(props) {
             <div>
                 {props.children}
             </div>
+            <Footer />
         </div>
     )
 }
