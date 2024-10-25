@@ -2,6 +2,8 @@ import Header from "./Header";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 
+import "./Layout.css";
+
 
 function Layout(props) {
     // Properties ---------------------------------------------------
@@ -10,12 +12,12 @@ function Layout(props) {
     // Methods ------------------------------------------------------
     // View ---------------------------------------------------------
     return (
-        <div>
+        <div className="centrepane">
             <Header />
             <Navbar />
-            <div>
+            <main>
                 {props.children}
-            </div>
+            </main>
             <Footer />
         </div>
     )
