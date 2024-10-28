@@ -1,6 +1,15 @@
+import { useState } from "react";
+
 function MyModules() {
-    // Properties ---------------------------------------------------
-    // Hooks --------------------------------------------------------
+    // Initialisation -----------------------------------------------
+    const loggedinUserID = 625;
+    const endpoint = `/modules/users/${loggedinUserID}`;
+
+    // State --------------------------------------------------------
+    const [modules, setModules] = useState(null);
+    const [loadingMessage, setLoadingMessage] = useState('Loading records ...');
+    
+
     // Context ------------------------------------------------------
     // Methods ------------------------------------------------------
     // View ---------------------------------------------------------
