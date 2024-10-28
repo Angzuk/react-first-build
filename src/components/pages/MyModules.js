@@ -17,10 +17,10 @@ function MyModules() {
     const endpointAddress = URL + endpoint;
     const response = await fetch(endpointAddress);
     const result = await response.json();
-    console.log(JSON.stringify(response));
     setModules(result);
-    }
-    useEffect(() => { apiCall(endpoint) }, [endpoint]);
+    };
+    useEffect(()=> {apiCall(endpoint)}, [endpoint]);
+
     // View ---------------------------------------------------------
     return (
         <section>
@@ -31,7 +31,7 @@ function MyModules() {
             : modules.length === 0 
                 ? <p>No modules found</p>
                 : modules.map((module) => 
-                    <p>{module.ModuleCode} {module.ModuleName}</p>
+                    <p key={module.ModuleCode}>{module.ModuleCode} {module.ModuleName}</p>
                 )
         }
         </section>
