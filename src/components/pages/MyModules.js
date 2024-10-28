@@ -8,13 +8,24 @@ function MyModules() {
     // State --------------------------------------------------------
     const [modules, setModules] = useState(null);
     const [loadingMessage, setLoadingMessage] = useState('Loading records ...');
-    
+
 
     // Context ------------------------------------------------------
     // Methods ------------------------------------------------------
     // View ---------------------------------------------------------
     return (
-        <h1>My Modules</h1>
+        <section>
+        <   h1>My Modules</h1>
+        {
+            !modules 
+            ? <p>{loadingMessage}</p>
+            : modules.length === 0 
+                ? <p>No modules found</p>
+                : modules.map((module) => 
+                    <p>{module.ModuleCode} {module.ModuleName}</p>
+                )
+        }
+        </section>
     )
 }
 
