@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function MyModules() {
     // Initialisation -----------------------------------------------
-    const loggedinUserID = 625;
+    const loggedinUserID = 279;
     const endpoint = `/modules/users/${loggedinUserID}`;
 
     // State --------------------------------------------------------
@@ -12,10 +12,15 @@ function MyModules() {
 
     // Context ------------------------------------------------------
     // Methods ------------------------------------------------------
-    const URL = 'https://localhost:5000/api';
+    const apiCall = async (endpoint) => {
+    const URL = 'https://softwarehub.uk/unibase/api';
     const endpointAddress = URL + endpoint;
-
-    
+    const response = await fetch(endpointAddress);
+    const result = await response.json();
+    console.log(JSON.stringify(response));
+    setModules(result);
+    }
+    useEffect(() => { apiCall(endpoint) }, [endpoint]);
     // View ---------------------------------------------------------
     return (
         <section>
