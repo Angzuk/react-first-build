@@ -12,6 +12,10 @@ function MyModules() {
 
     // Context ------------------------------------------------------
     // Methods ------------------------------------------------------
+    const URL = 'https://localhost:5000/api';
+    const endpointAddress = URL + endpoint;
+
+    
     // View ---------------------------------------------------------
     return (
         <section>
