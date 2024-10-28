@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import API from "../api/API";
+import ModulePanels from "../entites/modules/ModulePanels";
 
 function MyModules() {
     // Initialisation -----------------------------------------------
@@ -31,9 +32,8 @@ function MyModules() {
             ? <p>{loadingMessage}</p>
             : modules.length === 0 
                 ? <p>No modules found</p>
-                : modules.map((module) => 
-                    <p key={module.ModuleCode}>{module.ModuleCode} {module.ModuleName}</p>
-                )
+                : <ModulePanels modules={modules} />
+                    
         }
         </section>
     )
