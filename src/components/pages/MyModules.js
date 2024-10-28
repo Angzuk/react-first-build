@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import API from "../api/API";
 
 function MyModules() {
     // Initialisation -----------------------------------------------
@@ -13,12 +14,12 @@ function MyModules() {
     // Context ------------------------------------------------------
     // Methods ------------------------------------------------------
     const apiCall = async (endpoint) => {
-    const URL = 'https://softwarehub.uk/unibase/api';
-    const endpointAddress = URL + endpoint;
-    const response = await fetch(endpointAddress);
-    const result = await response.json();
-    setModules(result);
+        const response = await API.get(endpoint);
+        response.isSuccess
+            ? setModules(response.result)
+            : setLoadingMessage(response.message)
     };
+
     useEffect(()=> {apiCall(endpoint)}, [endpoint]);
 
     // View ---------------------------------------------------------
