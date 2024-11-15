@@ -17,7 +17,7 @@ export default function ModuleForm({ initialmodule=emptyModule}){
     // Handlers --------------------------------------------------
     // View ------------------------------------------------------
     return(
-        <form>
+        <form className="BorderedForm">
             <FormItem
                 label="Module Name"
                 htmlFor="ModuleName"
