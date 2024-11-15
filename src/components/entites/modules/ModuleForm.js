@@ -2,9 +2,9 @@ import { useState } from 'react';
 import FormItem from '../../UI/Form';
 
 const emptyModule = {
-    ModuleName: "",
-    ModuleCode: "",
-    ModuleLevel: 0,
+    ModuleName: "Dummy name",
+    ModuleCode: "XYZ",
+    ModuleLevel: 4,
     ModuleYearID: 0,
     ModuleLeaderID: 0,
     ModuleImageURL: "https://images.freeimages.com/images/small-previews/293/cable-4-1243085.jpg",
