@@ -42,15 +42,14 @@ function MyModules() {
                 : <ModulePanels modules={modules} />
                     
         }
-        <p>&nbsp;</p>
-      <ActionTray>
-        <ToolTipDecorator message="Add new module">
-          <ActionAdd showText onClick={handleAdd} buttonText="Add new module"/>
-        </ToolTipDecorator>
-        <ToolTipDecorator message="Join a module">
-          <ActionAdd showText onClick={handleJoin} buttonText="Join a module"/>
-        </ToolTipDecorator>
-      </ActionTray>
+        <ActionTray>
+            <ToolTipDecorator message="Add new module">
+                <ActionAdd showText onClick={handleAdd} buttonText="Add new module"/>
+            </ToolTipDecorator>
+            <ToolTipDecorator message="Join a module">
+                <ActionAdd showText onClick={handleJoin} buttonText="Join a module"/>
+            </ToolTipDecorator>
+        </ActionTray>
         </section>
     )
 }
