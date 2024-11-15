@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import FormItem from '../../UI/Form';
 
 const emptyModule = {
     ModuleName: "",
@@ -17,13 +18,21 @@ export default function ModuleForm({ initialmodule=emptyModule}){
     // View ------------------------------------------------------
     return(
         <form>
-            <label htmlFor="ModuleName">Module Name</label>
-            <p>Please enter the name of the module</p>
-            <input 
+            <FormItem
+                label="Module Name"
+                htmlFor="ModuleName"
+                advice="Please enter the name of the module"
+                error="Your module name is too short"
+            >
+                <input 
                 type="text" 
                 name="ModuleName"
                 value={module.ModuleName}
-            /> 
+                />
+            </FormItem> 
+
+            <label htmlFor="ModuleName">Module Name</label>
+            <p>Please enter the name of the module</p>
             <p>Module name is too short</p>
 
             <label htmlFor="ModuleCode">Module Code</label>
