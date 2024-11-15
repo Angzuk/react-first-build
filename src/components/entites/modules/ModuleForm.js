@@ -16,7 +16,38 @@ export default function ModuleForm({ initialmodule=emptyModule}){
     // Handlers --------------------------------------------------
     // View ------------------------------------------------------
     return(
+        <form>
+            <label htmlFor="ModuleName">Module Name</label>
+            <p>Please enter the name of the module</p>
+            <input 
+                type="text" 
+                name="ModuleName"
+                value={module.ModuleName}
+            /> 
+            <p>Module name is too short</p>
 
+            <label htmlFor="ModuleCode">Module Code</label>
+            <p>Please enter the module code</p>
+            <input 
+                type="text" 
+                name="ModuleCode"
+                value={module.ModuleCode}
+            />
+            <p>Module code in not in valid format</p>
+            
+            <label htmlFor="ModuleLevel">Module Level</label>
+            <p>Choose a level between 3 and 7 inclusive</p>
+            <select 
+                name="ModuleLevel"
+                value={module.ModuleLevel}
+            >
+                <option value="0" disabled>Select module level</option>
+                {
+                    [3,4,5,6,7].map((level) => <option key={level}>{level}</option>)
+                }
+            </select>
+            <p>Invalid module level</p>
+        </form>
     );
 
 }
