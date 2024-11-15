@@ -15,6 +15,12 @@ export default function ModuleForm({ initialmodule=emptyModule}){
     // State -----------------------------------------------------
     const [module, setModule] = useState(initialmodule);
     // Handlers --------------------------------------------------
+    const handleChange= (event) => {
+        const { name, value } = event.target;
+        const newValue = (name === "ModuleLevel") ? parseInt(value) : value;
+        setModule({...module, [name]: newValue});
+    };
+
     // View ------------------------------------------------------
     return(
         <form className="BorderedForm">
@@ -28,6 +34,7 @@ export default function ModuleForm({ initialmodule=emptyModule}){
                 type="text" 
                 name="ModuleName"
                 value={module.ModuleName}
+                onChange={handleChange}
                 />
             </FormItem> 
 
@@ -41,6 +48,7 @@ export default function ModuleForm({ initialmodule=emptyModule}){
                 type="text" 
                 name="ModuleCode"
                 value={module.ModuleCode}
+                onChange={handleChange}
             />
             </FormItem>
             
@@ -53,6 +61,7 @@ export default function ModuleForm({ initialmodule=emptyModule}){
                 <select 
                 name="ModuleLevel"
                 value={module.ModuleLevel}
+                onChange={handleChange}
                 >
                 <option value="0" disabled>Select module level</option>
                 {
