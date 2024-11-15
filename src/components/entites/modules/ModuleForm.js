@@ -31,31 +31,36 @@ export default function ModuleForm({ initialmodule=emptyModule}){
                 />
             </FormItem> 
 
-            <label htmlFor="ModuleName">Module Name</label>
-            <p>Please enter the name of the module</p>
-            <p>Module name is too short</p>
-
-            <label htmlFor="ModuleCode">Module Code</label>
-            <p>Please enter the module code</p>
-            <input 
+            <FormItem
+                label="Module Code"
+                htmlFor="ModuleCode"
+                advice="Please enter the module code"
+                error="Module code in not in valid format"
+            >
+                <input 
                 type="text" 
                 name="ModuleCode"
                 value={module.ModuleCode}
             />
-            <p>Module code in not in valid format</p>
+            </FormItem>
             
-            <label htmlFor="ModuleLevel">Module Level</label>
-            <p>Choose a level between 3 and 7 inclusive</p>
-            <select 
+            <FormItem
+                label="Module Level"
+                htmlFor="ModuleLevel"
+                advice="Choose a level between 3 and 7 inclusive"
+                error="Invalid level - must be between 3 and 7 inclusive"
+            >
+                <select 
                 name="ModuleLevel"
                 value={module.ModuleLevel}
-            >
+                >
                 <option value="0" disabled>Select module level</option>
                 {
                     [3,4,5,6,7].map((level) => <option key={level}>{level}</option>)
                 }
             </select>
-            <p>Invalid module level</p>
+            </FormItem>
+
         </form>
     );
 
