@@ -13,6 +13,8 @@ function MyModules() {
     const [modules, setModules] = useState(null);
     const [loadingMessage, setLoadingMessage] = useState('Loading records ...');
 
+    const [showNewModuleForm, setShowNewModuleForm] = useState(false);
+    const [showJoinModuleForm, setShowJoinModuleForm] = useState(false);
 
     // Context ------------------------------------------------------
     // Methods ------------------------------------------------------
@@ -24,7 +26,7 @@ function MyModules() {
     };
 
     useEffect(()=> {apiCall(endpoint)}, [endpoint]);
-    
+
     const handleAdd = () => setShowNewModuleForm(true);
     const handleJoin = () => setShowJoinModuleForm(true);
 
