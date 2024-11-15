@@ -24,6 +24,9 @@ function MyModules() {
     };
 
     useEffect(()=> {apiCall(endpoint)}, [endpoint]);
+    
+    const handleAdd = () => setShowNewModuleForm(true);
+    const handleJoin = () => setShowJoinModuleForm(true);
 
     // View ---------------------------------------------------------
     return (
