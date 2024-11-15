@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import API from "../api/API";
 import ModulePanels from "../entites/modules/ModulePanels";
+import ToolTipDecorator from "../UI/ToolTipDecorator";
+import { ActionTray,ActionAdd } from "../UI/Actions";
 
 function MyModules() {
     // Initialisation -----------------------------------------------
@@ -35,6 +37,15 @@ function MyModules() {
                 : <ModulePanels modules={modules} />
                     
         }
+        <p>&nbsp;</p>
+      <ActionTray>
+        <ToolTipDecorator message="Add new module">
+          <ActionAdd showText onClick={handleAdd} buttonText="Add new module"/>
+        </ToolTipDecorator>
+        <ToolTipDecorator message="Join a module">
+          <ActionAdd showText onClick={handleJoin} buttonText="Join a module"/>
+        </ToolTipDecorator>
+      </ActionTray>
         </section>
     )
 }
