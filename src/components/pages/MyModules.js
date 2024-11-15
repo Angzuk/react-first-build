@@ -3,6 +3,7 @@ import API from "../api/API";
 import ModulePanels from "../entites/modules/ModulePanels";
 import ToolTipDecorator from "../UI/ToolTipDecorator";
 import { ActionTray,ActionAdd } from "../UI/Actions";
+import ModuleForm from "../entites/modules/ModuleForm";
 
 function MyModules() {
     // Initialisation -----------------------------------------------
@@ -50,6 +51,13 @@ function MyModules() {
                 <ActionAdd showText onClick={handleJoin} buttonText="Join a module"/>
             </ToolTipDecorator>
         </ActionTray>
+
+        {
+            showNewModuleForm &&<p><ModuleForm /></p>
+        }
+        {
+            showJoinModuleForm &&<p>{"<JoinModuleForm />"}</p>
+        }
         </section>
     )
 }
