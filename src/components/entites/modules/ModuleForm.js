@@ -7,7 +7,7 @@ const emptyModule = {
     ModuleImageURL: "https://images.freeimages.com/images/small-previews/293/cable-4-1243085.jpg";
 }
 
-export default function ModuleForm(){
+export default function ModuleForm({ initialmodule=emptyModule}){
     // Initialisation --------------------------------------------
     // State -----------------------------------------------------
     // Handlers --------------------------------------------------
