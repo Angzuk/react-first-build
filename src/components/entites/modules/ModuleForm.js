@@ -12,8 +12,31 @@ const emptyModule = {
 
 export default function ModuleForm({ initialmodule=emptyModule}){
     // Initialisation --------------------------------------------
+    const isValid = {
+        ModuleName: (name) => name.length>8,
+        ModuleCode: (code) => /^\D{2}\d{4}$/.test(code),
+        ModuleLevel: (level) => (level > 2) && (level < 8),
+        ModuleYearID: (id) => true,
+        ModuleLeaderID: (id) => true,
+        ModuleImageURL: (url) => /^(http|https):\/\/(([a-zA-Z0-9$\-_.+!*'(),;:&=]|%[0-9a-fA-F]{2})+@)?(((25[0-5]|2[0-4][0-9]|[0-1][0-9][0-9]|[1-9][0-9]|[0-9])(\.(25[0-5]|2[0-4][0-9]|[0-1][0-9][0-9]|[1-9][0-9]|[0-9])){3})|localhost|([a-zA-Z0-9\-\u00C0-\u017F]+\.)+([a-zA-Z]{2,}))(:[0-9]+)?(\/(([a-zA-Z0-9$\-_.+!*'(),;:@&=]|%[0-9a-fA-F]{2})*(\/([a-zA-Z0-9$\-_.+!*'(),;:@&=]|%[0-9a-fA-F]{2})*)*)?(\?([a-zA-Z0-9$\-_.+!*'(),;:@&=/?]|%[0-9a-fA-F]{2})*)?(#([a-zA-Z0-9$\-_.+!*'(),;:@&=/?]|%[0-9a-fA-F]{2})*)?)?$/.test(url)    }
+
+    const errorMessage = {
+        ModuleName: "Module name is too short",
+        ModuleCode: "Module is not in a valid format",
+        ModuleLevel: "Invalid module level",
+        ModuleYearID: "No delivery year has been selected",
+        ModuleLeaderID: "No module leader has been selected",
+        ModuleImageURL: "Image URL is not a valid URL string"
+    }
+
+
     // State -----------------------------------------------------
     const [module, setModule] = useState(initialmodule);
+    const [errors, setErrors] = useState(
+        Object.keys(initialmodule).reduce(
+            ((accum, key) => ({...accum, [key]: null})),{})
+    );
+
     // Handlers --------------------------------------------------
     const handleChange= (event) => {
         const { name, value } = event.target;
