@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import API from '../../api/API';
 import FormItem from '../../UI/Form';
 
 const emptyModule = {
@@ -36,6 +37,18 @@ export default function ModuleForm({ initialmodule=emptyModule}){
         Object.keys(initialmodule).reduce(
             ((accum, key) => ({...accum, [key]: null})),{})
     );
+
+    const [years, setYears] = useState(null);
+    const [loadingYearMessage, setLoadingYearMessage] = useState('Loading records ...');
+
+    const getYears = async () => {
+        const response = await API.get('/years');
+        response.isSuccess
+            ? setYears(response.result)
+            : setLoadingYearMessage(response.message)
+    };
+
+    useEffect(()=> { getYears() }, []);
 
     // Handlers --------------------------------------------------
     const handleChange= (event) => {
@@ -87,7 +100,7 @@ export default function ModuleForm({ initialmodule=emptyModule}){
                 value={module.ModuleLevel}
                 onChange={handleChange}
                 >
-                <option value="0" disabled>Non selected</option>
+                <option value="0" disabled>None selected</option>
                 {
                     [3,4,5,6,7].map((level) => <option key={level}>{level}</option>)
                 }
@@ -100,16 +113,22 @@ export default function ModuleForm({ initialmodule=emptyModule}){
                 advice="Select year of delivery"
                 error={errors.ModuleYearID}
             >
-                <select 
-                    name="ModuleLevel"
-                    value={module.ModuleYearID}
-                    onChange={handleChange}
-                >
-                    <option value="0" disabled>Non selected</option>
-                    {
-                        years.map((year) => <option key={year.YearID}>{year.YearName}</option>)
-                    }
-                </select>
+                {
+                    !years
+                        ? <p>{loadingYearMessage}</p> 
+                        : years.length === 0
+                            ? <p>No years found</p>
+                            : <select 
+                                name="ModuleYearID"
+                                value={module.ModuleYearID}
+                                onChange={handleChange}
+                            >
+                                <option value="0" disabled>None selected</option>
+                                {
+                                    years.map((year) => <option key={year.YearID} value={year.YearID}>{year.YearName}</option>)
+                                }
+                            </select>
+                }
             </FormItem>
 
         </form>
