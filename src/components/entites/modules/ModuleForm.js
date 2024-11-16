@@ -40,7 +40,7 @@ export default function ModuleForm({ initialmodule=emptyModule}){
     // Handlers --------------------------------------------------
     const handleChange= (event) => {
         const { name, value } = event.target;
-        const newValue = (name === "ModuleLevel") ? parseInt(value) : value;
+        const newValue = (name === "ModuleLevel") || (name === 'ModuleYearID') || (name === 'ModuleLeaderID')? parseInt(value) : value;
         setModule({...module, [name]: newValue});
         setErrors({ ...errors, [name]: isValid[name](newValue) ? null : errorMessage[name]});
     };
@@ -52,7 +52,7 @@ export default function ModuleForm({ initialmodule=emptyModule}){
                 label="Module Name"
                 htmlFor="ModuleName"
                 advice="Please enter the name of the module"
-                error="Your module name is too short"
+                error={errors.ModuleName}
             >
                 <input 
                 type="text" 
@@ -66,7 +66,7 @@ export default function ModuleForm({ initialmodule=emptyModule}){
                 label="Module Code"
                 htmlFor="ModuleCode"
                 advice="Please enter the module code"
-                error="Module code in not in valid format"
+                error={errors.ModuleCode}
             >
                 <input 
                 type="text" 
@@ -80,7 +80,7 @@ export default function ModuleForm({ initialmodule=emptyModule}){
                 label="Module Level"
                 htmlFor="ModuleLevel"
                 advice="Choose a level between 3 and 7 inclusive"
-                error="Invalid level - must be between 3 and 7 inclusive"
+                error={errors.ModuleLevel}
             >
                 <select 
                 name="ModuleLevel"
