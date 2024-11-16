@@ -42,6 +42,7 @@ export default function ModuleForm({ initialmodule=emptyModule}){
         const { name, value } = event.target;
         const newValue = (name === "ModuleLevel") ? parseInt(value) : value;
         setModule({...module, [name]: newValue});
+        setErrors({ ...errors, [name]: isValid[name](newValue) ? null : errorMessage[name]});
     };
 
     // View ------------------------------------------------------
