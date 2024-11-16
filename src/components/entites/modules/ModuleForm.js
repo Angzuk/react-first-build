@@ -49,7 +49,7 @@ export default function ModuleForm({ initialmodule=emptyModule}){
     return(
         <form className="BorderedForm">
             <FormItem
-                label="Module Name"
+                label="Module name"
                 htmlFor="ModuleName"
                 advice="Please enter the name of the module"
                 error={errors.ModuleName}
@@ -63,7 +63,7 @@ export default function ModuleForm({ initialmodule=emptyModule}){
             </FormItem> 
 
             <FormItem
-                label="Module Code"
+                label="Module code"
                 htmlFor="ModuleCode"
                 advice="Please enter the module code"
                 error={errors.ModuleCode}
@@ -77,7 +77,7 @@ export default function ModuleForm({ initialmodule=emptyModule}){
             </FormItem>
             
             <FormItem
-                label="Module Level"
+                label="Module level"
                 htmlFor="ModuleLevel"
                 advice="Choose a level between 3 and 7 inclusive"
                 error={errors.ModuleLevel}
@@ -87,11 +87,29 @@ export default function ModuleForm({ initialmodule=emptyModule}){
                 value={module.ModuleLevel}
                 onChange={handleChange}
                 >
-                <option value="0" disabled>Select module level</option>
+                <option value="0" disabled>Non selected</option>
                 {
                     [3,4,5,6,7].map((level) => <option key={level}>{level}</option>)
                 }
             </select>
+            </FormItem>
+
+            <FormItem
+                label="Module year"
+                htmlFor="ModuleYearID"
+                advice="Select year of delivery"
+                error={errors.ModuleYearID}
+            >
+                <select 
+                    name="ModuleLevel"
+                    value={module.ModuleYearID}
+                    onChange={handleChange}
+                >
+                    <option value="0" disabled>Non selected</option>
+                    {
+                        years.map((year) => <option key={year.YearID}>{year.YearName}</option>)
+                    }
+                </select>
             </FormItem>
 
         </form>
