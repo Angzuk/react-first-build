@@ -71,10 +71,27 @@ export default function ModuleForm({ onDismiss, initialmodule=emptyModule}){
         setModule({...module, [name]: newValue});
         setErrors({ ...errors, [name]: isValid[name](newValue) ? null : errorMessage[name]});
     };
-
-    const handleSubmit = () => { };
+    
+    const isValidModule = (module) => {
+        let isModuleValid = true;
+        Object.keys(module).forEach((key)=>{
+            if(isValid[key](module[key])) {
+                errors[key] = null;
+            } 
+            else {
+                errors[key] = errorMessage[key];
+                isModuleValid = false;
+            }
+        });
+        return isModuleValid; 
+    };
+    
     const handleCancel = () => onDismiss();
 
+    const handleSubmit = () => { 
+        isValidModule(module) && submit();
+        setErrors({...errors});
+    };
 
     // View ------------------------------------------------------
     return(
