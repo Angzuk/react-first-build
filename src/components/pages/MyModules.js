@@ -8,7 +8,8 @@ import ModuleForm from "../entites/modules/ModuleForm";
 function MyModules() {
     // Initialisation -----------------------------------------------
     const loggedinUserID = 279;
-    const endpoint = `/modules/users/${loggedinUserID}`;
+    // const endpoint = `/modules/users/${loggedinUserID}`;
+    const endpoint = `/modules`;
 
     // State --------------------------------------------------------
     const [modules, setModules] = useState(null);
@@ -19,20 +20,26 @@ function MyModules() {
 
     // Context ------------------------------------------------------
     // Methods ------------------------------------------------------
-    const apiCall = async (endpoint) => {
-        const response = await API.get(endpoint);
+    const getModules = async () => {
+        const response = await API.get(`/modules`);
         response.isSuccess
             ? setModules(response.result)
             : setLoadingMessage(response.message)
     };
 
-    useEffect(()=> {apiCall(endpoint)}, [endpoint]);
+    useEffect(()=> {getModules()}, []);
 
     const handleAdd = () => setShowNewModuleForm(true);
     const handleJoin = () => setShowJoinModuleForm(true);
-
     const handleDismissAdd = () => setShowNewModuleForm(false);
     const handleDismissJoin = () => setShowJoinModuleForm(false);
+
+    const handleSubmit = async (module) => {
+        const response = await API.post(endpoint, module);
+        return response.isSuccess
+            ? getModules() || true
+            : false;
+    };
 
     // View ---------------------------------------------------------
     return (
@@ -56,7 +63,7 @@ function MyModules() {
         </ActionTray>
 
         {
-            showNewModuleForm &&<p><ModuleForm onDismiss = {handleDismissAdd}/></p>
+            showNewModuleForm &&<p><ModuleForm onDismiss = {handleDismissAdd} onSubmit={handleSubmit}/></p>
         }
         {
             showJoinModuleForm &&<p>{"<JoinModuleForm />"}</p>

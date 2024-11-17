@@ -5,15 +5,15 @@ import ToolTipDecorator from '../../UI/ToolTipDecorator';
 import FormItem from '../../UI/Form';
 
 const emptyModule = {
-    ModuleName: "Dummy name",
-    ModuleCode: "XYZ",
+    ModuleName: "Dummy Module Name",
+    ModuleCode: "XY1234",
     ModuleLevel: 4,
-    ModuleYearID: 0,
+    ModuleYearID: 1,
     ModuleLeaderID: 0,
     ModuleImageURL: "https://images.freeimages.com/images/small-previews/293/cable-4-1243085.jpg",
 }
 
-export default function ModuleForm({ onDismiss, initialmodule=emptyModule}){
+export default function ModuleForm({ onDismiss, onSubmit, initialmodule=emptyModule}){
     // Initialisation --------------------------------------------
     const isValid = {
         ModuleName: (name) => name.length>8,
@@ -90,7 +90,7 @@ export default function ModuleForm({ onDismiss, initialmodule=emptyModule}){
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        isValidModule(module) && onDismiss();
+        isValidModule(module) && onSubmit(module) && onDismiss();
         setErrors({...errors});
     };
 
