@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import API from '../../api/API';
+import { ActionTray, ActionAdd, ActionClose } from '../../UI/Actions';
+import ToolTipDecorator from '../../UI/ToolTipDecorator';
 import FormItem from '../../UI/Form';
 
 const emptyModule = {
@@ -69,6 +71,10 @@ export default function ModuleForm({ initialmodule=emptyModule}){
         setModule({...module, [name]: newValue});
         setErrors({ ...errors, [name]: isValid[name](newValue) ? null : errorMessage[name]});
     };
+
+    const handleSubmit = () => { };
+    const handleCancel = () => { };
+
 
     // View ------------------------------------------------------
     return(
@@ -180,6 +186,15 @@ export default function ModuleForm({ initialmodule=emptyModule}){
                 onChange={handleChange}
                 />
             </FormItem> 
+
+            <ActionTray>
+                <ToolTipDecorator message="Submit new module">
+                    <ActionAdd showText onClick={handleSubmit} buttonText="Submit"/>
+                </ToolTipDecorator>
+                <ToolTipDecorator message="Cancel submission">
+                    <ActionClose showText onClick={handleCancel} buttonText="Cancel"/>
+                </ToolTipDecorator>
+            </ActionTray>
 
         </form>
     );
