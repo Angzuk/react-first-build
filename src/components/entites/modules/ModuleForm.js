@@ -88,8 +88,9 @@ export default function ModuleForm({ onDismiss, initialmodule=emptyModule}){
     
     const handleCancel = () => onDismiss();
 
-    const handleSubmit = () => { 
-        isValidModule(module) && submit();
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        isValidModule(module) && onDismiss();
         setErrors({...errors});
     };
 
