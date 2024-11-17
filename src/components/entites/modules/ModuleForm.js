@@ -50,6 +50,18 @@ export default function ModuleForm({ initialmodule=emptyModule}){
 
     useEffect(()=> { getYears() }, []);
 
+    const [leaders, setLeaders] = useState(null);
+    const [loadingLeadersMessage, setLoadingLeadersMessage] = useState('Loading records ...');
+
+    const getLeaders = async () => {
+        const response = await API.get('/users/staff');
+        response.isSuccess
+            ? setLeaders(response.result)
+            : setLoadingLeadersMessage(response.message)
+    };
+
+    useEffect(()=> { getLeaders() }, []);
+
     // Handlers --------------------------------------------------
     const handleChange= (event) => {
         const { name, value } = event.target;
@@ -117,7 +129,7 @@ export default function ModuleForm({ initialmodule=emptyModule}){
                     !years
                         ? <p>{loadingYearMessage}</p> 
                         : years.length === 0
-                            ? <p>No years found</p>
+                            ? <p>No records found</p>
                             : <select 
                                 name="ModuleYearID"
                                 value={module.ModuleYearID}
@@ -126,6 +138,30 @@ export default function ModuleForm({ initialmodule=emptyModule}){
                                 <option value="0" disabled>None selected</option>
                                 {
                                     years.map((year) => <option key={year.YearID} value={year.YearID}>{year.YearName}</option>)
+                                }
+                            </select>
+                }
+            </FormItem>
+
+            <FormItem
+                label="Module leader"
+                htmlFor="ModuleLeaderID"
+                advice="Select module leader"
+                error={errors.ModuleLeaderID}
+            >
+                {
+                    !leaders
+                        ? <p>{loadingLeadersMessage}</p> 
+                        : leaders.length === 0
+                            ? <p>No records found</p>
+                            : <select 
+                                name="ModuleLeaderID"
+                                value={module.ModuleLeaderID}
+                                onChange={handleChange}
+                            >
+                                <option value="0" disabled>None selected</option>
+                                {
+                                    leaders.map((leader) => <option key={leader.UserID} value={leader.UserID}>{leader.UserFirstname} {leader.UserLastname}</option>)
                                 }
                             </select>
                 }
