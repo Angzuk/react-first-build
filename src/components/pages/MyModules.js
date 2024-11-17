@@ -31,6 +31,9 @@ function MyModules() {
     const handleAdd = () => setShowNewModuleForm(true);
     const handleJoin = () => setShowJoinModuleForm(true);
 
+    const handleDismissAdd = () => setShowNewModuleForm(false);
+    const handleDismissJoin = () => setShowJoinModuleForm(false);
+
     // View ---------------------------------------------------------
     return (
         <section>
@@ -53,7 +56,7 @@ function MyModules() {
         </ActionTray>
 
         {
-            showNewModuleForm &&<p><ModuleForm /></p>
+            showNewModuleForm &&<p><ModuleForm onDismiss = {handleDismissAdd}/></p>
         }
         {
             showJoinModuleForm &&<p>{"<JoinModuleForm />"}</p>
