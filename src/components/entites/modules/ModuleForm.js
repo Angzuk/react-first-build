@@ -29,7 +29,6 @@ export default function ModuleForm({ onDismiss, onSubmit, initialmodule=emptyMod
         ModuleImageURL: "Image URL is not a valid URL string"
     };
 
-
     // State -----------------------------------------------------
     const [module, setModule, errors, setErrors] = Form.useForm(initialmodule);
 
