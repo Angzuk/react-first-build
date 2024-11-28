@@ -73,7 +73,7 @@ export default function ModuleForm({ onDismiss, onSubmit, initialmodule=emptyMod
 
     // View ------------------------------------------------------
     return(
-        <Form >
+        <Form onSubmit={handleSubmit} onCancel={handleCancel}>
             <FormItem
                 label="Module name"
                 htmlFor="ModuleName"
