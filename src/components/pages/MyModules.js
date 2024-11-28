@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import API from "../api/API";
+import useLoad from "../api/useLoad";
 import ModulePanels from "../entites/modules/ModulePanels";
 import ToolTipDecorator from "../UI/ToolTipDecorator";
 import { ActionTray,ActionAdd } from "../UI/Actions";
@@ -12,23 +13,13 @@ function MyModules() {
     const endpoint = `/modules`;
 
     // State --------------------------------------------------------
-    const [modules, setModules] = useState(null);
-    const [loadingMessage, setLoadingMessage] = useState('Loading records ...');
+    const [ modules, , loadingMessage, loadModules ] = useLoad(endpoint);
 
     const [showNewModuleForm, setShowNewModuleForm] = useState(false);
     const [showJoinModuleForm, setShowJoinModuleForm] = useState(false);
 
     // Context ------------------------------------------------------
     // Methods ------------------------------------------------------
-    const getModules = async () => {
-        const response = await API.get(`/modules`);
-        response.isSuccess
-            ? setModules(response.result)
-            : setLoadingMessage(response.message)
-    };
-
-    useEffect(()=> {getModules()}, []);
-
     const handleAdd = () => setShowNewModuleForm(true);
     const handleJoin = () => setShowJoinModuleForm(true);
     const handleDismissAdd = () => setShowNewModuleForm(false);
@@ -37,7 +28,7 @@ function MyModules() {
     const handleSubmit = async (module) => {
         const response = await API.post(endpoint, module);
         return response.isSuccess
-            ? getModules() || true
+            ? loadModules(endpoint) || true
             : false;
     };
 
