@@ -5,7 +5,7 @@ import ToolTipDecorator from '../../UI/ToolTipDecorator';
 import FormItem from '../../UI/Form';
 
 const emptyModule = {
-    ModuleName: "Dummy Module Name",
+    ModuleName: "Test Module Module",
     ModuleCode: "XY1234",
     ModuleLevel: 4,
     ModuleYearID: 1,
