@@ -53,7 +53,7 @@ function Item ({ children, label, htmlFor, advice, error }){
     );
 }
 
-function useForm ({ children, label, htmlFor, advice, error }){
+function useForm (){
     // Initialisation ---------------------------------------
     // State ------------------------------------------------
     // Context ----------------------------------------------
@@ -66,3 +66,4 @@ function useForm ({ children, label, htmlFor, advice, error }){
 // Compose Form Object ////////////////
 // ------------------------------------
 Form.Item = Item;
+Form.useForm = useForm;
