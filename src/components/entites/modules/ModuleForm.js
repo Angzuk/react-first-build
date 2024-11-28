@@ -187,4 +187,4 @@ export default function ModuleForm({ onDismiss, onSubmit, initialmodule=emptyMod
         </ Form>
     );
 
-}
+};
