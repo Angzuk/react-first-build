@@ -2,12 +2,15 @@ import './Form.scss';
 import ToolTipDecorator from './ToolTipDecorator';
 import { ActionTray, ActionAdd, ActionClose } from './Actions';
 
-export default function Form ({children}) {
+export default function Form ({ children, onSubmit, onCancel }) {
     // Initialisation ---------------------------------------
     // Hooks ------------------------------------------------
     // State ------------------------------------------------
     // Context ----------------------------------------------
     // Handlers ---------------------------------------------
+    const handleSubmit = () => onSubmit;
+    const handleCancel = () => onCancel;
+
     // View -------------------------------------------------
     return (
         <form className="BorderedForm">
