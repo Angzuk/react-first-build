@@ -1,5 +1,5 @@
 import useLoad from "../../api/useLoad";
-import Form from "../../UI/Form";
+import Form from '../../UI/Form';
 
 const emptyModule = {
   ModuleName: "Test Module Module",
@@ -11,11 +11,7 @@ const emptyModule = {
     "https://images.freeimages.com/images/small-previews/293/cable-4-1243085.jpg",
 };
 
-export default function ModuleForm({
-  onDismiss,
-  onSubmit,
-  initialmodule = emptyModule,
-}) {
+export default function ModuleForm({ onCancel, onSubmit, initialModule=emptyModule }) {
   // Initialisation --------------------------------------------
   const validation = {
     isValid: {
@@ -29,7 +25,6 @@ export default function ModuleForm({
           url
         ),
     },
-
     errorMessage: {
       ModuleName: "Module name is too short",
       ModuleCode: "Module is not in a valid format",
@@ -43,11 +38,7 @@ export default function ModuleForm({
   const conformance = ["ModuleLevel", "ModuleYearID", "ModuleLeaderID"];
 
   // State -----------------------------------------------------
-  const [module, errors, setErrors, handleChange] = Form.useForm(
-    initialmodule,
-    conformance,
-    validation
-  );
+  const [module, errors, setErrors, handleChange] = Form.useForm(initialModule, conformance, validation );
 
   const [years, , loadingYearMessage] = useLoad("/years");
   const [leaders, , loadingLeadersMessage] = useLoad("/users/staff");
@@ -67,11 +58,11 @@ export default function ModuleForm({
     return isRecordValid;
   };
 
-  const handleCancel = () => onDismiss();
+  const handleCancel = () => onCancel();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    isValidModule(module) && onSubmit(module) && onDismiss();
+    isValidModule(module) && onSubmit(module) && onCancel();
     setErrors({ ...errors });
   };
 
@@ -197,4 +188,4 @@ export default function ModuleForm({
       </Form.Item>
     </Form>
   );
-}
+};
