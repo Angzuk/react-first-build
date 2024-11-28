@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import useLoad from '../../api/useLoad';
-import FormItem from '../../UI/Form';
+import Form from '../../UI/Form';
 
 const emptyModule = {
     ModuleName: "Test Module Module",
