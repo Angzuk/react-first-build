@@ -3,15 +3,16 @@ import { useState, useEffect } from "react";
 export default function useLoad() {
 
     // State ---------------------------------------------------------------------------------------------------------------
-    const [modules, setModules] = useState(null);
+    const [records, setRecords] = useState(null);
     const [loadingMessage, setLoadingMessage] = useState('Loading records ...');
 
-    const loadModules = async () => {
+    // Methods -------------------------------------------------------------------------------------------------------------
+    const loadRecords = async () => {
         const response = await API.get(`/modules`);
         response.isSuccess
-            ? setModules(response.result)
+            ? setRecords(response.result)
             : setLoadingMessage(response.message)
     };
 
-    useEffect(()=> {loadModules()}, []);
+    useEffect(()=> {loadRecords()}, []);
 }
