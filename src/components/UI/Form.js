@@ -53,6 +53,26 @@ function Item ({ children, label, htmlFor, advice, error }){
     );
 }
 
+function useForm ({ children, label, htmlFor, advice, error }){
+    // Initialisation ---------------------------------------
+    // State ------------------------------------------------
+    // Context ----------------------------------------------
+    // Handlers ---------------------------------------------
+    // View -------------------------------------------------
+    return (
+        <div className="FormItem">
+            <label className="FormLabel" htmlFor={htmlFor}>{label}</label>
+            {
+            advice && <p className="FormAdvice">{advice}</p>
+            }
+            {children}
+            {
+            error && <p className="FormError">{error}</p>
+            }
+        </div>
+    );
+}
+
 // ------------------------------------
 // Compose Form Object ////////////////
 // ------------------------------------
