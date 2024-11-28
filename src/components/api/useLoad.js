@@ -3,11 +3,11 @@ import API from "./API";
 
 export default function useLoad(endpoint) {
 
-    // State ---------------------------------------------------------------------------------------------------------------
+    // State -----------------------------------------------------------
     const [records, setRecords] = useState(null);
     const [loadingMessage, setLoadingMessage] = useState('Loading records ...');
 
-    // Methods -------------------------------------------------------------------------------------------------------------
+    // Methods ----------------------------------------------------------
     const loadRecords = async (endpoint) => {
         const response = await API.get(endpoint);
         response.isSuccess
@@ -16,4 +16,7 @@ export default function useLoad(endpoint) {
     };
 
     useEffect(()=> {loadRecords(endpoint)}, [endpoint]);
+
+    // Return -----------------------------------------------------------
+    return [ records, setRecords, loadingMessage, loadRecords ];
 }
