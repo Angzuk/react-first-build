@@ -13,7 +13,7 @@ function MyModules() {
     const endpoint = `/modules`;
 
     // State --------------------------------------------------------
-    const [ modules, setModules, loadingMessage, loadModules ] = useLoad(endpoint)
+    const [ modules, , loadingMessage, loadModules ] = useLoad(endpoint)
 
     const [showNewModuleForm, setShowNewModuleForm] = useState(false);
     const [showJoinModuleForm, setShowJoinModuleForm] = useState(false);
