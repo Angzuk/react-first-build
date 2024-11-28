@@ -14,7 +14,7 @@ function MyModules() {
     // useLoad
     const [modules, setModules] = useState(null);
     const [loadingMessage, setLoadingMessage] = useState('Loading records ...');
-    
+
     const getModules = async () => {
         const response = await API.get(`/modules`);
         response.isSuccess
@@ -30,8 +30,6 @@ function MyModules() {
 
     // Context ------------------------------------------------------
     // Methods ------------------------------------------------------
-    
-
     const handleAdd = () => setShowNewModuleForm(true);
     const handleJoin = () => setShowJoinModuleForm(true);
     const handleDismissAdd = () => setShowNewModuleForm(false);
