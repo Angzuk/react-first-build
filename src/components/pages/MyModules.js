@@ -15,14 +15,14 @@ function MyModules() {
     const [modules, setModules] = useState(null);
     const [loadingMessage, setLoadingMessage] = useState('Loading records ...');
 
-    const getModules = async () => {
+    const loadModules = async () => {
         const response = await API.get(`/modules`);
         response.isSuccess
             ? setModules(response.result)
             : setLoadingMessage(response.message)
     };
 
-    useEffect(()=> {getModules()}, []);
+    useEffect(()=> {loadModules()}, []);
 
     // State --------------------------------------------------------
     const [showNewModuleForm, setShowNewModuleForm] = useState(false);
@@ -38,7 +38,7 @@ function MyModules() {
     const handleSubmit = async (module) => {
         const response = await API.post(endpoint, module);
         return response.isSuccess
-            ? getModules() || true
+            ? loadModules() || true
             : false;
     };
 
