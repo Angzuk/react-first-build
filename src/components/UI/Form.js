@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import './Form.scss';
 import ToolTipDecorator from './ToolTipDecorator';
 import { ActionTray, ActionAdd, ActionClose } from './Actions';
@@ -53,9 +54,15 @@ function Item ({ children, label, htmlFor, advice, error }){
     );
 }
 
-function useForm (){
+function useForm (initialRecord){
     // Initialisation ---------------------------------------
     // State ------------------------------------------------
+    const [record, setRecord] = useState(initialRecord);
+    const [errors, setErrors] = useState(
+        Object.keys(initialRecord).reduce(
+            ((accum, key) => ({...accum, [key]: null})),{})
+    );
+
     // Context ----------------------------------------------
     // Handlers ---------------------------------------------
     // View -------------------------------------------------

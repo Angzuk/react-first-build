@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import useLoad from '../../api/useLoad';
 import Form from '../../UI/Form';
 
@@ -32,13 +31,7 @@ export default function ModuleForm({ onDismiss, onSubmit, initialmodule=emptyMod
 
 
     // State -----------------------------------------------------
-    const [module, setModule, errors, setErrors] = useForm(initialmodule);
-
-    const [module, setModule] = useState(initialmodule);
-    const [errors, setErrors] = useState(
-        Object.keys(initialmodule).reduce(
-            ((accum, key) => ({...accum, [key]: null})),{})
-    );
+    const [module, setModule, errors, setErrors] = Form.useForm(initialmodule);
 
     const [years, , loadingYearMessage, ] = useLoad('/years');
     const [leaders, , loadingLeadersMessage, ] = useLoad('/users/staff');
