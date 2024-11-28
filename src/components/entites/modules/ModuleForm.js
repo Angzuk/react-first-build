@@ -32,6 +32,8 @@ export default function ModuleForm({ onDismiss, onSubmit, initialmodule=emptyMod
 
 
     // State -----------------------------------------------------
+    const [module, setModule, errors, setErrors] = useForm(initialmodule);
+
     const [module, setModule] = useState(initialmodule);
     const [errors, setErrors] = useState(
         Object.keys(initialmodule).reduce(
