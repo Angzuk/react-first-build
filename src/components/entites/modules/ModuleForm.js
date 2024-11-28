@@ -52,17 +52,17 @@ export default function ModuleForm({ onDismiss, onSubmit, initialmodule=emptyMod
     };
     
     const isValidModule = (module) => {
-        let isModuleValid = true;
+        let isRecordValid = true;
         Object.keys(module).forEach((key)=>{
             if(isValid[key](module[key])) {
                 errors[key] = null;
             } 
             else {
                 errors[key] = errorMessage[key];
-                isModuleValid = false;
+                isRecordValid = false;
             }
         });
-        return isModuleValid; 
+        return isRecordValid; 
     };
     
     const handleCancel = () => onDismiss();

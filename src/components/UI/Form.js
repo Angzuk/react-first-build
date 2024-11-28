@@ -1,8 +1,8 @@
 import './Form.scss';
 
-export dafault function Form () {}
+export dafault function Form () {};
 
-export default function FormItem ({ children, label, htmlFor, advice, error }){
+function FormItem ({ children, label, htmlFor, advice, error }){
     // Properties -------------------------------------------
     // Hooks ------------------------------------------------
     // Context ----------------------------------------------
