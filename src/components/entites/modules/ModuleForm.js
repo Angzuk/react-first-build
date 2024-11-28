@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import useLoad from '../../api/useLoad';
+import { useState, useEffect } from 'react';
+import API from '../../api/API';
 import { ActionTray, ActionAdd, ActionClose } from '../../UI/Actions';
 import ToolTipDecorator from '../../UI/ToolTipDecorator';
 import FormItem from '../../UI/Form';
@@ -40,8 +40,29 @@ export default function ModuleForm({ onDismiss, onSubmit, initialmodule=emptyMod
             ((accum, key) => ({...accum, [key]: null})),{})
     );
 
-    const [years, , loadingYearMessage, ] = useLoad('/years');
-    const [leaders, , loadingLeadersMessage, ] = useLoad('/users/staff');
+    const [years, setYears] = useState(null);
+    const [loadingYearMessage, setLoadingYearMessage] = useState('Loading records ...');
+
+    const getYears = async () => {
+        const response = await API.get('/years');
+        response.isSuccess
+            ? setYears(response.result)
+            : setLoadingYearMessage(response.message)
+    };
+
+    useEffect(()=> { getYears() }, []);
+
+    const [leaders, setLeaders] = useState(null);
+    const [loadingLeadersMessage, setLoadingLeadersMessage] = useState('Loading records ...');
+
+    const getLeaders = async () => {
+        const response = await API.get('/users/staff');
+        response.isSuccess
+            ? setLeaders(response.result)
+            : setLoadingLeadersMessage(response.message)
+    };
+
+    useEffect(()=> { getLeaders() }, []);
 
     // Handlers --------------------------------------------------
     const handleChange= (event) => {
