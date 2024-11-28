@@ -13,7 +13,7 @@ function MyModules() {
     const endpoint = `/modules`;
 
     // State --------------------------------------------------------
-    const [ modules, , loadingMessage, loadModules ] = useLoad(endpoint)
+    const [ modules, , loadingMessage, loadModules ] = useLoad(endpoint);
 
     const [showNewModuleForm, setShowNewModuleForm] = useState(false);
     const [showJoinModuleForm, setShowJoinModuleForm] = useState(false);
@@ -28,7 +28,7 @@ function MyModules() {
     const handleSubmit = async (module) => {
         const response = await API.post(endpoint, module);
         return response.isSuccess
-            ? loadModules() || true
+            ? loadModules(endpoint) || true
             : false;
     };
 
