@@ -18,10 +18,10 @@ export default function Form ({children}) {
         </div>
 
             <ActionTray>
-                    <ToolTipDecorator message="Submit new module">
+                    <ToolTipDecorator message="Submit record">
                         <ActionAdd showText onClick={handleSubmit} buttonText="Submit"/>
                     </ToolTipDecorator>
-                    <ToolTipDecorator message="Cancel submission">
+                    <ToolTipDecorator message="Cancel form">
                         <ActionClose showText onClick={handleCancel} buttonText="Cancel"/>
                     </ToolTipDecorator>
                 </ActionTray>
