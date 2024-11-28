@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import API from "../api/API";
 import useLoad from "../api/useLoad";
 import ModulePanels from "../entites/modules/ModulePanels";
