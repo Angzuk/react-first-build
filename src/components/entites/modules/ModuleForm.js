@@ -75,7 +75,7 @@ export default function ModuleForm({ onDismiss, onSubmit, initialmodule=emptyMod
 
     // View ------------------------------------------------------
     return(
-        <form className="BorderedForm">
+        <Form >
             <FormItem
                 label="Module name"
                 htmlFor="ModuleName"
@@ -184,16 +184,9 @@ export default function ModuleForm({ onDismiss, onSubmit, initialmodule=emptyMod
                 />
             </FormItem> 
 
-            <ActionTray>
-                <ToolTipDecorator message="Submit new module">
-                    <ActionAdd showText onClick={handleSubmit} buttonText="Submit"/>
-                </ToolTipDecorator>
-                <ToolTipDecorator message="Cancel submission">
-                    <ActionClose showText onClick={handleCancel} buttonText="Cancel"/>
-                </ToolTipDecorator>
-            </ActionTray>
+            
 
-        </form>
+        </ Form>
     );
 
 }
