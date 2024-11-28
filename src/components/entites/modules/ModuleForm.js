@@ -74,7 +74,7 @@ export default function ModuleForm({ onDismiss, onSubmit, initialmodule=emptyMod
     // View ------------------------------------------------------
     return(
         <Form onSubmit={handleSubmit} onCancel={handleCancel}>
-            <FormItem
+            <Form.Item
                 label="Module name"
                 htmlFor="ModuleName"
                 advice="Please enter the name of the module"
@@ -86,9 +86,9 @@ export default function ModuleForm({ onDismiss, onSubmit, initialmodule=emptyMod
                 value={module.ModuleName}
                 onChange={handleChange}
                 />
-            </FormItem> 
+            </Form.Item> 
 
-            <FormItem
+            <Form.Item
                 label="Module code"
                 htmlFor="ModuleCode"
                 advice="Please enter the module code"
@@ -100,9 +100,9 @@ export default function ModuleForm({ onDismiss, onSubmit, initialmodule=emptyMod
                 value={module.ModuleCode}
                 onChange={handleChange}
             />
-            </FormItem>
+            </Form.Item>
             
-            <FormItem
+            <Form.Item
                 label="Module level"
                 htmlFor="ModuleLevel"
                 advice="Choose a level between 3 and 7 inclusive"
@@ -118,9 +118,9 @@ export default function ModuleForm({ onDismiss, onSubmit, initialmodule=emptyMod
                     [3,4,5,6,7].map((level) => <option key={level}>{level}</option>)
                 }
             </select>
-            </FormItem>
+            </Form.Item>
 
-            <FormItem
+            <Form.Item
                 label="Module year"
                 htmlFor="ModuleYearID"
                 advice="Select year of delivery"
@@ -142,9 +142,9 @@ export default function ModuleForm({ onDismiss, onSubmit, initialmodule=emptyMod
                                 }
                             </select>
                 }
-            </FormItem>
+            </Form.Item>
 
-            <FormItem
+            <Form.Item
                 label="Module leader"
                 htmlFor="ModuleLeaderID"
                 advice="Select module leader"
@@ -166,9 +166,9 @@ export default function ModuleForm({ onDismiss, onSubmit, initialmodule=emptyMod
                                 }
                             </select>
                 }
-            </FormItem>
+            </Form.Item>
 
-            <FormItem
+            <Form.Item
                 label="Module image URL"
                 htmlFor="ModuleImageURL"
                 advice="Please enter the URL of the module's image"
@@ -180,7 +180,7 @@ export default function ModuleForm({ onDismiss, onSubmit, initialmodule=emptyMod
                 value={module.ModuleImageURL}
                 onChange={handleChange}
                 />
-            </FormItem> 
+            </Form.Item> 
 
             
 

@@ -32,7 +32,7 @@ export default function Form ({ children, onSubmit, onCancel }) {
     );
 };
 
-function FormItem ({ children, label, htmlFor, advice, error }){
+function Item ({ children, label, htmlFor, advice, error }){
     // Initialisation ---------------------------------------
     // Hooks ------------------------------------------------
     // State ------------------------------------------------
@@ -52,3 +52,8 @@ function FormItem ({ children, label, htmlFor, advice, error }){
         </div>
     );
 }
+
+// ------------------------------------
+// Compose Form Object ////////////////
+// ------------------------------------
+Form.Item = Item;
