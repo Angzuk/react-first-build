@@ -29,6 +29,8 @@ export default function ModuleForm({ onDismiss, onSubmit, initialmodule=emptyMod
         ModuleImageURL: "Image URL is not a valid URL string"
     };
 
+    const conformance = ["ModuleLevel", "ModuleYearID", "ModuleLeaderID"];
+
     // State -----------------------------------------------------
     const [module, setModule, errors, setErrors] = Form.useForm(initialmodule);
 
@@ -38,7 +40,7 @@ export default function ModuleForm({ onDismiss, onSubmit, initialmodule=emptyMod
     // Handlers --------------------------------------------------
     const handleChange= (event) => {
         const { name, value } = event.target;
-        const newValue = (name === "ModuleLevel") || (name === 'ModuleYearID') || (name === 'ModuleLeaderID')? parseInt(value) : value;
+        const newValue = conformance.includes(name) ? parseInt(value) : value;
         setModule({...module, [name]: newValue});
         setErrors({ ...errors, [name]: isValid[name](newValue) ? null : errorMessage[name]});
     };
