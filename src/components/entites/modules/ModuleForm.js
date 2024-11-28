@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import useLoad from '../../api/useLoad';
-import { ActionTray, ActionAdd, ActionClose } from '../../UI/Actions';
-import ToolTipDecorator from '../../UI/ToolTipDecorator';
-import FormItem from '../../UI/Form';
+import Form from '../../UI/Form';
 
 const emptyModule = {
     ModuleName: "Test Module Module",
@@ -11,7 +9,7 @@ const emptyModule = {
     ModuleYearID: 1,
     ModuleLeaderID: 0,
     ModuleImageURL: "https://images.freeimages.com/images/small-previews/293/cable-4-1243085.jpg",
-}
+};
 
 export default function ModuleForm({ onDismiss, onSubmit, initialmodule=emptyModule}){
     // Initialisation --------------------------------------------
@@ -30,7 +28,7 @@ export default function ModuleForm({ onDismiss, onSubmit, initialmodule=emptyMod
         ModuleYearID: "No delivery year has been selected",
         ModuleLeaderID: "No module leader has been selected",
         ModuleImageURL: "Image URL is not a valid URL string"
-    }
+    };
 
 
     // State -----------------------------------------------------
@@ -52,17 +50,17 @@ export default function ModuleForm({ onDismiss, onSubmit, initialmodule=emptyMod
     };
     
     const isValidModule = (module) => {
-        let isModuleValid = true;
+        let isRecordValid = true;
         Object.keys(module).forEach((key)=>{
             if(isValid[key](module[key])) {
                 errors[key] = null;
             } 
             else {
                 errors[key] = errorMessage[key];
-                isModuleValid = false;
+                isRecordValid = false;
             }
         });
-        return isModuleValid; 
+        return isRecordValid; 
     };
     
     const handleCancel = () => onDismiss();
@@ -75,8 +73,8 @@ export default function ModuleForm({ onDismiss, onSubmit, initialmodule=emptyMod
 
     // View ------------------------------------------------------
     return(
-        <form className="BorderedForm">
-            <FormItem
+        <Form onSubmit={handleSubmit} onCancel={handleCancel}>
+            <Form.Item
                 label="Module name"
                 htmlFor="ModuleName"
                 advice="Please enter the name of the module"
@@ -88,9 +86,9 @@ export default function ModuleForm({ onDismiss, onSubmit, initialmodule=emptyMod
                 value={module.ModuleName}
                 onChange={handleChange}
                 />
-            </FormItem> 
+            </Form.Item> 
 
-            <FormItem
+            <Form.Item
                 label="Module code"
                 htmlFor="ModuleCode"
                 advice="Please enter the module code"
@@ -102,9 +100,9 @@ export default function ModuleForm({ onDismiss, onSubmit, initialmodule=emptyMod
                 value={module.ModuleCode}
                 onChange={handleChange}
             />
-            </FormItem>
+            </Form.Item>
             
-            <FormItem
+            <Form.Item
                 label="Module level"
                 htmlFor="ModuleLevel"
                 advice="Choose a level between 3 and 7 inclusive"
@@ -120,9 +118,9 @@ export default function ModuleForm({ onDismiss, onSubmit, initialmodule=emptyMod
                     [3,4,5,6,7].map((level) => <option key={level}>{level}</option>)
                 }
             </select>
-            </FormItem>
+            </Form.Item>
 
-            <FormItem
+            <Form.Item
                 label="Module year"
                 htmlFor="ModuleYearID"
                 advice="Select year of delivery"
@@ -144,9 +142,9 @@ export default function ModuleForm({ onDismiss, onSubmit, initialmodule=emptyMod
                                 }
                             </select>
                 }
-            </FormItem>
+            </Form.Item>
 
-            <FormItem
+            <Form.Item
                 label="Module leader"
                 htmlFor="ModuleLeaderID"
                 advice="Select module leader"
@@ -168,9 +166,9 @@ export default function ModuleForm({ onDismiss, onSubmit, initialmodule=emptyMod
                                 }
                             </select>
                 }
-            </FormItem>
+            </Form.Item>
 
-            <FormItem
+            <Form.Item
                 label="Module image URL"
                 htmlFor="ModuleImageURL"
                 advice="Please enter the URL of the module's image"
@@ -182,18 +180,11 @@ export default function ModuleForm({ onDismiss, onSubmit, initialmodule=emptyMod
                 value={module.ModuleImageURL}
                 onChange={handleChange}
                 />
-            </FormItem> 
+            </Form.Item> 
 
-            <ActionTray>
-                <ToolTipDecorator message="Submit new module">
-                    <ActionAdd showText onClick={handleSubmit} buttonText="Submit"/>
-                </ToolTipDecorator>
-                <ToolTipDecorator message="Cancel submission">
-                    <ActionClose showText onClick={handleCancel} buttonText="Cancel"/>
-                </ToolTipDecorator>
-            </ActionTray>
+            
 
-        </form>
+        </ Form>
     );
 
-}
+};
