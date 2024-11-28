@@ -1,6 +1,8 @@
 import './Form.scss';
+import ToolTipDecorator from './ToolTipDecorator';
+import { ActionTray, ActionAdd, ActionClose } from './Actions';
 
-export dafault function Form () {
+export default function Form ({children}) {
     // Initialisation ---------------------------------------
     // Hooks ------------------------------------------------
     // State ------------------------------------------------
@@ -9,6 +11,11 @@ export dafault function Form () {
     // View -------------------------------------------------
     return (
         <form className="BorderedForm">
+        <div className='FormTray'>
+        {
+            children
+        }
+        </div>
 
             <ActionTray>
                     <ToolTipDecorator message="Submit new module">

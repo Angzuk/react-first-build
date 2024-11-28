@@ -1,7 +1,5 @@
 import { useState } from 'react';
 import useLoad from '../../api/useLoad';
-import { ActionTray, ActionAdd, ActionClose } from '../../UI/Actions';
-import ToolTipDecorator from '../../UI/ToolTipDecorator';
 import FormItem from '../../UI/Form';
 
 const emptyModule = {
