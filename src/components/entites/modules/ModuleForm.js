@@ -9,7 +9,7 @@ const emptyModule = {
     ModuleYearID: 1,
     ModuleLeaderID: 0,
     ModuleImageURL: "https://images.freeimages.com/images/small-previews/293/cable-4-1243085.jpg",
-}
+};
 
 export default function ModuleForm({ onDismiss, onSubmit, initialmodule=emptyModule}){
     // Initialisation --------------------------------------------
@@ -28,7 +28,7 @@ export default function ModuleForm({ onDismiss, onSubmit, initialmodule=emptyMod
         ModuleYearID: "No delivery year has been selected",
         ModuleLeaderID: "No module leader has been selected",
         ModuleImageURL: "Image URL is not a valid URL string"
-    }
+    };
 
 
     // State -----------------------------------------------------
