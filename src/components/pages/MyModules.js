@@ -11,15 +11,10 @@ function MyModules() {
     // const endpoint = `/modules/users/${loggedinUserID}`;
     const endpoint = `/modules`;
 
-    // State --------------------------------------------------------
+    // useLoad
     const [modules, setModules] = useState(null);
     const [loadingMessage, setLoadingMessage] = useState('Loading records ...');
-
-    const [showNewModuleForm, setShowNewModuleForm] = useState(false);
-    const [showJoinModuleForm, setShowJoinModuleForm] = useState(false);
-
-    // Context ------------------------------------------------------
-    // Methods ------------------------------------------------------
+    
     const getModules = async () => {
         const response = await API.get(`/modules`);
         response.isSuccess
@@ -28,6 +23,14 @@ function MyModules() {
     };
 
     useEffect(()=> {getModules()}, []);
+
+    // State --------------------------------------------------------
+    const [showNewModuleForm, setShowNewModuleForm] = useState(false);
+    const [showJoinModuleForm, setShowJoinModuleForm] = useState(false);
+
+    // Context ------------------------------------------------------
+    // Methods ------------------------------------------------------
+    
 
     const handleAdd = () => setShowNewModuleForm(true);
     const handleJoin = () => setShowJoinModuleForm(true);
