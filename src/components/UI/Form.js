@@ -54,7 +54,7 @@ function Item ({ children, label, htmlFor, advice, error }){
     );
 }
 
-function useForm (initialRecord){
+function useForm (initialRecord, conformance, {isValid, errorMessage}) {
     // Initialisation ---------------------------------------
     // State ------------------------------------------------
     const [record, setRecord] = useState(initialRecord);
@@ -65,8 +65,15 @@ function useForm (initialRecord){
 
     // Context ----------------------------------------------
     // Handlers ---------------------------------------------
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        const newValue = conformance.includes(name) ? parseInt(value) : value;
+        setRecord({...module, [name]: newValue});
+        setErrors({ ...errors, [name]: isValid[name](newValue) ? null : errorMessage[name]});
+    };
+
     // View -------------------------------------------------
-    return [record, setRecord, errors, setErrors];
+    return [record, setRecord, errors, setErrors, handleChange];
 }
 
 // ------------------------------------
