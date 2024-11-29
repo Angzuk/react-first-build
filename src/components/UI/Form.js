@@ -48,7 +48,7 @@ function Item({ children, label, htmlFor, advice, error }) {
   );
 }
 
-function useForm(initialRecord, conformance, { isValid, errorMessage }) {
+function useForm(initialRecord, conformance, { isValid, errorMessage }, onCancel, onSubmit) {
   // Initialisation ---------------------------------------
   // State ------------------------------------------------
   const [record, setRecord] = useState(initialRecord);
@@ -70,9 +70,27 @@ function useForm(initialRecord, conformance, { isValid, errorMessage }) {
       [name]: isValid[name](newValue) ? null : errorMessage[name],
     });
   };
+  const isValidRecord = (record) => {
+    let isRecordValid = true;
+    Object.keys(record).forEach((key) => {
+      if (isValid[key](record[key])) {
+        errors[key] = null;
+      } else {
+        errors[key] = errorMessage[key];
+        isRecordValid = false;
+      }
+    });
+    return isRecordValid;
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    isValidRecord(record) && onSubmit(record) && onCancel();
+    setErrors({ ...errors });
+  };
 
   // View -------------------------------------------------
-  return [record, errors, setErrors, handleChange];
+  return [record, errors, setErrors, handleChange, handleSubmit];
 }
 
 // ------------------------------------

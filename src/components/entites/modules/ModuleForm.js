@@ -38,37 +38,15 @@ export default function ModuleForm({ onCancel, onSubmit, initialModule=emptyModu
   const conformance = ["ModuleLevel", "ModuleYearID", "ModuleLeaderID"];
 
   // State -----------------------------------------------------
-  const [module, errors, setErrors, handleChange] = Form.useForm(initialModule, conformance, validation );
+  const [module, errors, handleChange, handleSubmit] = Form.useForm(initialModule, conformance, validation, onCancel, onSubmit);
 
   const [years, , loadingYearMessage] = useLoad("/years");
   const [leaders, , loadingLeadersMessage] = useLoad("/users/staff");
 
   // Handlers --------------------------------------------------
-
-  const isValidModule = (module) => {
-    let isRecordValid = true;
-    Object.keys(module).forEach((key) => {
-      if (validation.isValid[key](module[key])) {
-        errors[key] = null;
-      } else {
-        errors[key] = validation.errorMessage[key];
-        isRecordValid = false;
-      }
-    });
-    return isRecordValid;
-  };
-
-  const handleCancel = () => onCancel();
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    isValidModule(module) && onSubmit(module) && onCancel();
-    setErrors({ ...errors });
-  };
-
   // View ------------------------------------------------------
   return (
-    <Form onSubmit={handleSubmit} onCancel={handleCancel}>
+    <Form onSubmit={handleSubmit} onCancel={onCancel}>
       <Form.Item
         label="Module name"
         htmlFor="ModuleName"
