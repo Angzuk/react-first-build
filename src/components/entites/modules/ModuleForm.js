@@ -47,6 +47,7 @@ export default function ModuleForm({ onCancel, onSubmit, initialModule=emptyModu
   // View ------------------------------------------------------
   return (
     <Form onSubmit={handleSubmit} onCancel={onCancel}>
+
       <Form.Item
         label="Module name"
         htmlFor="ModuleName"
@@ -164,6 +165,7 @@ export default function ModuleForm({ onCancel, onSubmit, initialModule=emptyModu
           onChange={handleChange}
         />
       </Form.Item>
+      
     </Form>
   );
 };

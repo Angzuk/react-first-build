@@ -90,7 +90,7 @@ function useForm(initialRecord, conformance, { isValid, errorMessage }, onCancel
   };
 
   // View -------------------------------------------------
-  return [record, errors, setErrors, handleChange, handleSubmit];
+  return [record, errors, handleChange, handleSubmit];
 }
 
 // ------------------------------------
