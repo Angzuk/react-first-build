@@ -3,7 +3,7 @@ import Form from '../../UI/Form.js';
 
 
 const emptyModule = {
-  ModuleName: "Dummy Module Name",
+  ModuleName: "Test Module Name",
   ModuleCode: "XY0123",
   ModuleLevel: 4,
   ModuleYearID: 1,
